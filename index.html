@@ -42,7 +42,7 @@
         function startTimer() {
             timerInterval = setInterval(() => {
                 timeLeft--;
-                timerDisplay.textContent = `Look for events in Meetup ${timeLeft} seconds...`;
+                timerDisplay.textContent = `Look for events in Meetup in ${timeLeft} seconds...`;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     window.location.href = 'https://www.meetup.com/barcelona-badminton/';
