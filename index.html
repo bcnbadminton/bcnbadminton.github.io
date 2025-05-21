@@ -16,16 +16,46 @@
     </style>
 </head>
 <body class="bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex justify-center items-center">
-    <div class="bg-white/20 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-white/30">
-        <h1 class="text-4xl sm:text-6xl font-semibold text-white text-center mb-6">
+    <div class="bg-white/20 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-white/30 text-center">
+        <h1 class="text-4xl sm:text-6xl font-semibold text-white mb-6">
             <i class="fas fa-feather-alt mr-3 text-yellow-400"></i>
             BCN Badminton
             <i class="fas fa-feather-alt ml-3 text-yellow-400"></i>
         </h1>
-        <p class="text-lg text-white text-center">
+        <p class="text-lg text-white mb-8">
             Where Barcelona plays Badminton!
         </p>
+        <p id="timer" class="text-xl text-yellow-300 font-semibold">
+            Redirecting in 10 seconds...
+        </p>
+        <button id="stayButton" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out">
+            Stay on this page
+        </button>
     </div>
+
+    <script>
+        let timeLeft = 10;
+        const timerDisplay = document.getElementById('timer');
+        const stayButton = document.getElementById('stayButton');
+        let timerInterval;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Look for events in Meetup ${timeLeft} seconds...`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    window.location.href = 'https://www.meetup.com/barcelona-badminton/';
+                }
+            }, 1000);
+        }
+
+        stayButton.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            timerDisplay.textContent = "Staying on this page!";
+        });
+
+        startTimer();
+    </script>
 </body>
 </html>
-
