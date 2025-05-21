@@ -13,6 +13,15 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        #timer {
+            cursor: pointer; /* Make it look clickable */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        #timer:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Slight background change on hover */
+            border-radius: 0.5rem; /* Add some rounded corners on hover*/
+            padding: 0.25rem; /* Add some padding on hover */
+        }
     </style>
 </head>
 <body class="bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex justify-center items-center">
@@ -42,13 +51,18 @@
         function startTimer() {
             timerInterval = setInterval(() => {
                 timeLeft--;
-                timerDisplay.textContent = `Look for events in Meetup in ${timeLeft} seconds...`;
+                timerDisplay.textContent = `Redirecting to Meetup in ${timeLeft} seconds...`;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     window.location.href = 'https://www.meetup.com/barcelona-badminton/';
                 }
             }, 1000);
         }
+
+        timerDisplay.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            window.location.href = 'https://www.meetup.com/barcelona-badminton/';
+        });
 
         stayButton.addEventListener('click', () => {
             clearInterval(timerInterval);
